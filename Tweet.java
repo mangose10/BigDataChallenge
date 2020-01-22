@@ -1,3 +1,5 @@
+package bigdata;
+
 import java.util.ArrayList;
 
 public class Tweet 
@@ -10,6 +12,7 @@ public class Tweet
     public Tweet(String text)
     {
         this.text = text;
+        tweetWords = new ArrayList<String>();
         processTweet();
     }
     
@@ -59,6 +62,7 @@ public class Tweet
                 currWord = "";
             }
         }
+        tweetWords.add(currWord);
     }
     
     //helper function for processing hashtags
