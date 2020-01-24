@@ -8,7 +8,20 @@ public class Tweet
     private String text;
     //arraylist of all words from tweet
     private ArrayList<String> tweetWords;
+    static final int ALPHABET_SIZE = 26; 
     
+    static class TrieNode { 
+
+        TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
+        boolean isWord;
+                  
+        TrieNode(){ 
+            for (int i = 0; i < ALPHABET_SIZE; i++) { 
+                children[i] = null; 
+            }
+        } 
+    }; 
+
     public Tweet(String text)
     {
         this.text = text;
@@ -146,5 +159,11 @@ public class Tweet
         }
         tweetWords.addAll(uncontract(currWord));
         return tweetPos;
+    }
+
+    ArrayList<String> findWord(String wordsTogether)
+    {
+
+
     }
 }
