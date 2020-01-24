@@ -14,8 +14,9 @@ public class Tweet
 
         TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
         boolean isWord;
-                  
+
         TrieNode(){ 
+            isWord = false;
             for (int i = 0; i < ALPHABET_SIZE; i++) { 
                 children[i] = null; 
             }
