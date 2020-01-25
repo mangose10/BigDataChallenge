@@ -7,18 +7,13 @@
 // Keep track of the string 
 // Ignore all zeros
 // Write to a file
-
-package bigdata;
-
 import java.io.File;
 import java.io.FileWriter;
-
-import bigdata.WeightMaker.TrieNode;
+import java.util.Arrays;
 
 public class WeightCalculator
 {
-
-
+     
      /**
       * Takes in already filled trie and passes it through a traversal function
       * that is going to add the existing children to a stack.
@@ -74,14 +69,14 @@ public class WeightCalculator
      {
           double total = 0.0;
 
-          int legnth = weight.length;
+          int length = weight.length;
 
-          for(int i = 0; i < lenght-1; i++)
+          for(int i = 0; i < length-1; i++)
           {
                total += weight[i];
           }
 
-          for(int i = 0; i < lenght; i++)
+          for(int i = 0; i < length; i++)
           {
                weight[i] = weight[i] / total;
           }

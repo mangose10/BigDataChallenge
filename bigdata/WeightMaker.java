@@ -1,5 +1,3 @@
-package bigdata;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -198,6 +196,7 @@ public class WeightMaker {
         System.out.println(Arrays.toString(weightedSearch("me with")));         /* test two words */
         System.out.println(Arrays.toString(weightedSearch("last bottle of")));  /* test three words */
         
+        //WeightCalculator calcWeight = new WeightCalculator(root);
     } 
 } 
 // This code is contributed by Sumit Ghosh 
