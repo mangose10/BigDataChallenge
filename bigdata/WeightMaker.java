@@ -12,20 +12,6 @@ public class WeightMaker {
     static final int ALPHABET_SIZE = 26 + 1; 
     static final int CATEGORY_COUNT = 8;
       
-    // trie node 
-    static class TrieNode { 
-
-        TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
-        double[] category = new double[CATEGORY_COUNT];         /* used to store category weights and the disaster weight*/
-        boolean isWord = false;
-          
-        TrieNode(){ 
-            for (int i = 0; i < ALPHABET_SIZE; i++) { 
-                children[i] = null; 
-            }
-        } 
-    }; 
-
     //Class to store Tweet its category and whether its a diasaster
     public static class WeightedTweet {
 
@@ -201,6 +187,10 @@ public class WeightMaker {
         System.out.println(Arrays.toString(weightedSearch("last bottle of")));  /* test three words */
         
         Tweet test = new Tweet("hope this works");
+
+        WeightCalculator test2 = new WeightCalculator(root);
+        test2.writeFile(test2.output);
+
     } 
 } 
 // This code is contributed by Sumit Ghosh 
