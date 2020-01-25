@@ -11,20 +11,6 @@ public class WeightMaker {
     // Alphabet size (# of letters + 1 for space) 
     static final int ALPHABET_SIZE = 26 + 1; 
     static final int CATEGORY_COUNT = 8;
-      
-    // trie node 
-    static class TrieNode { 
-
-        TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
-        double[] category = new double[CATEGORY_COUNT];         /* used to store category weights and the disaster weight*/
-        boolean isWord = false;
-          
-        TrieNode(){ 
-            for (int i = 0; i < ALPHABET_SIZE; i++) { 
-                children[i] = null; 
-            }
-        } 
-    }; 
 
     //Class to store Tweet its category and whether its a diasaster
     public static class WeightedTweet {
