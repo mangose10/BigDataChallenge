@@ -16,6 +16,7 @@ public class WeightMaker {
 
         TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
         double[] category = new double[CATEGORY_COUNT];         /* used to store category weights and the disaster weight*/
+        boolean isWord = false;
           
         TrieNode(){ 
             for (int i = 0; i < ALPHABET_SIZE; i++) { 
@@ -53,6 +54,7 @@ public class WeightMaker {
         int level; 
         int length = key.length(); 
         int index; 
+        
        
         TrieNode pCrawl = root; 
        
@@ -73,6 +75,7 @@ public class WeightMaker {
             pCrawl = pCrawl.children[index]; 
         } 
 
+        pCrawl.isWord = true;
         pCrawl.category[category - 1] ++;
         pCrawl.category[CATEGORY_COUNT - 1] += disaster;
 
