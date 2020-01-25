@@ -1,3 +1,5 @@
+package bigdata;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -192,7 +194,7 @@ public class WeightMaker {
         System.out.println(Arrays.toString(weightedSearch("these")));           /* test null */
         System.out.println(Arrays.toString(weightedSearch("bottle")));          /* test word */
         System.out.println(Arrays.toString(weightedSearch("florida")));         /* test repeated word */
-        System.out.println(Arrays.toString(weightedSearch("last")));            /* test word in two categories*/
+        System.out.println(Arrays.toString(weightedSearch("last")));            /* test word in two category*/
         System.out.println(Arrays.toString(weightedSearch("me with")));         /* test two words */
         System.out.println(Arrays.toString(weightedSearch("last bottle of")));  /* test three words */
         
