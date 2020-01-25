@@ -12,6 +12,7 @@ public class WeightMaker {
     static final int ALPHABET_SIZE = 26 + 1; 
     static final int CATEGORY_COUNT = 8;
 
+    
     //Class to store Tweet its category and whether its a diasaster
     public static class WeightedTweet {
 
@@ -187,6 +188,10 @@ public class WeightMaker {
         System.out.println(Arrays.toString(weightedSearch("last bottle of")));  /* test three words */
         
         Tweet test = new Tweet("hope this works");
+
+        WeightCalculator test2 = new WeightCalculator(root);
+        test2.writeFile(test2.output);
+
     } 
 } 
 // This code is contributed by Sumit Ghosh 
