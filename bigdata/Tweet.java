@@ -1,4 +1,3 @@
-package bigdata;
 
 import java.util.ArrayList;
 
@@ -94,21 +93,21 @@ public class Tweet
             }
             if(currCh == '#')
             {
-                tweetWords.addAll(findWords(tag));
+                //tweetWords.addAll(findWords(tag));
                 return processTag(tweetPos);
             }
             if(currCh == '\'')
             {
-                tweetWords.addAll(findWords(tag));
+                //tweetWords.addAll(findWords(tag));
                 return processContraction(tweetPos, "");
             }
             if(Character.isWhitespace(currCh))
             {
-                tweetWords.addAll(findWords(tag));
+                //tweetWords.addAll(findWords(tag));
                 return tweetPos;
             }
         }
-        tweetWords.addAll(findWords(tag));
+        //tweetWords.addAll(findWords(tag));
         return tweetPos;
     }
     
@@ -135,16 +134,16 @@ public class Tweet
             }
             if(currCh == '#')
             {
-                tweetWords.addAll(uncontract(currWord));
+                //tweetWords.addAll(uncontract(currWord));
                 return processTag(tweetPos);
             }
             if(Character.isWhitespace(currCh))
             {
-                tweetWords.addAll(uncontract(currWord));
+                //tweetWords.addAll(uncontract(currWord));
                 return tweetPos;
             }
         }
-        tweetWords.addAll(uncontract(currWord));
+        //tweetWords.addAll(uncontract(currWord));
         return tweetPos;
     }
 }

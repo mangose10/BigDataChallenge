@@ -1,4 +1,3 @@
-package bigdata;
 
 import java.io.File;
 import java.io.FileNotFoundException;
