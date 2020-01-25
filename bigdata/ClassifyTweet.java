@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ClassifyTweet {
@@ -50,7 +51,7 @@ public class ClassifyTweet {
             }else{
                 index = key.charAt(level) - 'a'; 
             }
-       
+
             if (pCrawl.children[index] == null) 
                 return new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; 
        
@@ -67,20 +68,18 @@ public class ClassifyTweet {
         
         ArrayList<String> inputArray = new ArrayList<String>();
         Scanner fileReader = new Scanner(new File(filename));
-        fileReader.useDelimiter(",");
-        final int VALUES_PER_LINE = 9;
 
-        while (fileReader.hasNext()){
-            inputArray.add(fileReader.next());
+        while (fileReader.hasNextLine()){
+            inputArray.add(fileReader.nextLine());
         }
 
-        for(int i = 0; i < inputArray.size(); i += VALUES_PER_LINE){
+        for(int i = 0; i < inputArray.size(); i ++){
 
             double[] category = new double[CATEGORY_COUNT];
+            String[] line = inputArray.get(i).split(",");
             
-            //@TODO take care of last value of each line (figure out last character)
             for (int j = 0; j < CATEGORY_COUNT; j++){
-                category[j] = Double.parseDouble(inputArray.get(i + j));
+                category[j] = Double.parseDouble(line[j+1]);
             }
 
             String test = "me with the last bottle of bottled water in florida apparently florida";
@@ -89,7 +88,7 @@ public class ClassifyTweet {
                 tList.add(text);
             }
 
-            insert(inputArray.get(i), category);
+            insert(line[0], category);
         }
 
         fileReader.close();
@@ -122,7 +121,7 @@ public class ClassifyTweet {
                 result[j] += weightTriple[j];
             }
         }
-
+        System.out.println(Arrays.toString(result));
         return processResult(result);
     }
 
@@ -154,13 +153,28 @@ public class ClassifyTweet {
         }
 
         //Could seperate by clauses here...
-
-        /*
+        
         for (String tweet: inputArray){
-            tweetArray = new Tweet(tweet).tweetWords;
+            tweetArray = new Tweet(tweet).getWords();
             int[] results = classifyTweet(tweetArray);
             System.out.println(tweet + ", " + results[0] + ", " + results[1]);
         }
-        */
+
+        fileReader.close();
+        
+    }
+
+    public static void main(String args[]) {
+        
+        root = new TrieNode();
+
+        try {
+            insertFromFile("../keyWeights.csv");
+            classifyFile("../testInput.csv");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

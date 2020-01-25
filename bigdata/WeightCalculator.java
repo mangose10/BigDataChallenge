@@ -34,7 +34,8 @@ public class WeightCalculator
         {
             System.out.println(key);
             root.category = calculateWeight(root.category);
-            output += key + ',' + Arrays.toString(root.category) + '\n';
+            String line = Arrays.toString(root.category);
+            output += key + ',' + line.substring(1, line.length() - 1).replace(" ", "") + '\n';
         }
           
         int length = root.children.length;
@@ -53,7 +54,7 @@ public class WeightCalculator
                 }
                 else
                 {
-                    traverse(root.children[i], key + Character.toString('a' + i));
+                    traverse(root.children[i], key + Character.toString((char)('a' + i)));
                 }
             }
         }

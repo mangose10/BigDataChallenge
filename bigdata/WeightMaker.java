@@ -12,7 +12,7 @@ public class WeightMaker {
     static final int ALPHABET_SIZE = 26 + 1; 
     static final int CATEGORY_COUNT = 8;
 
-    
+
     //Class to store Tweet its category and whether its a diasaster
     public static class WeightedTweet {
 
@@ -42,7 +42,6 @@ public class WeightMaker {
         int level; 
         int length = key.length(); 
         int index; 
-        
        
         TrieNode pCrawl = root; 
        
@@ -117,29 +116,18 @@ public class WeightMaker {
         ArrayList<WeightedTweet> tweetList = new ArrayList<WeightedTweet>();
         ArrayList<String> inputArray = new ArrayList<String>();
         Scanner fileReader = new Scanner(new File(filename));
-        fileReader.useDelimiter(",");
 
-        while (fileReader.hasNext()){
-            
-            inputArray.add(fileReader.next());
+        while (fileReader.hasNextLine()){
+            inputArray.add(fileReader.nextLine());
         }
 
-        //when inserting a weighted tweet inputArray.size() should always be a multiple of 3
-        for(int i = 0; i < inputArray.size(); i+=3){
+        for(int i = 0; i < inputArray.size(); i++){
 
-            String test = "me with the last bottle of bottled water in florida apparently florida";
-            ArrayList<String> tList = new ArrayList<String>();
-            for(String text:test.split(" ")) {
-                tList.add(text);
-            }
+            String[] line = inputArray.get(i).split(",");
 
-            //For every i % 3 == 0 (not including i == 0), the last character is an "invisible" symbol that could 
-            //be \n but to make sure I'll just remove it all together, the expected value for a i % 3 == 0 is 0 or 1
-
-            //WeightedTweet curTweet = new WeightedTweet(new Tweet(inputArray.get(i)).tweetWords,
-            WeightedTweet curTweet = new WeightedTweet(tList,
-                                                       Integer.parseInt(inputArray.get(i + 1)),
-                                                       inputArray.get(i + 2).charAt(0) - '0');
+            WeightedTweet curTweet = new WeightedTweet(new Tweet(line[0]).getWords(),
+                                                       Integer.parseInt(line[1]),
+                                                       Integer.parseInt(line[2]));
                                                        
             tweetList.add(curTweet);
         }
@@ -186,12 +174,9 @@ public class WeightMaker {
         System.out.println(Arrays.toString(weightedSearch("last")));            /* test word in two categories*/
         System.out.println(Arrays.toString(weightedSearch("me with")));         /* test two words */
         System.out.println(Arrays.toString(weightedSearch("last bottle of")));  /* test three words */
-        
-        Tweet test = new Tweet("hope this works");
 
         WeightCalculator test2 = new WeightCalculator(root);
         test2.writeFile(test2.output);
-
     } 
 } 
 // This code is contributed by Sumit Ghosh 
