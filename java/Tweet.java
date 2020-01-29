@@ -57,7 +57,7 @@ public class Tweet
         this.text = text;
         tweetWords = new ArrayList<String>();
         processTweet();
-        dictRoot = null;
+        dictRoot.loadDictionary();
     }
     
     public ArrayList<String> getWords()
@@ -192,9 +192,11 @@ public class Tweet
         return tweetPos;
     }
 
-    ArrayList<String> findWord(String wordsTogether)
+    ArrayList<String> findWords(String wordsTogether)
     {
+        ArrayList<String> words = new ArrayList<String>();
+        String currWord;
 
-
+        return words;
     }
 }
