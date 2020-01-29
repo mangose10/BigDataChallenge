@@ -1,6 +1,8 @@
 package bigdata;
 
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.util.Scanner;
 
 public class Tweet 
 {
@@ -9,6 +11,7 @@ public class Tweet
     //arraylist of all words from tweet
     private ArrayList<String> tweetWords;
     static final int ALPHABET_SIZE = 26; 
+    private TrieNode dictRoot;
     
     static class TrieNode { 
 
@@ -21,6 +24,32 @@ public class Tweet
                 children[i] = null; 
             }
         } 
+
+        void loadDictionary()
+        {
+            FileReader inFile = new FileReader("dictionary.txt");
+            Scanner in = new Scanner(inFile);
+
+            int numWords = Integer.parseInt(in.nextLine());
+            int letter = 0;
+            String currWord;
+            TrieNode dictNode = this;
+
+            for(int word = 0; word < numWords; word++)
+            {
+                dictNode = this;
+                currWord = in.nextLine();
+                for(letter = 0; letter <currWord.length(); letter++)
+                {
+                    if(dictNode.children[currWord.charAt(letter) - 'a'] == null)
+                    {
+                        dictNode.children[currWord.charAt(letter) - 'a'] = new dictNode();
+                    }
+                    dictNode = dictNode.children[currWord.charAt(letter) - 'a'];
+                }
+                dictNode.isWord = true;
+            }
+        }
     }; 
 
     public Tweet(String text)
@@ -28,6 +57,7 @@ public class Tweet
         this.text = text;
         tweetWords = new ArrayList<String>();
         processTweet();
+        dictRoot = null;
     }
     
     public ArrayList<String> getWords()
