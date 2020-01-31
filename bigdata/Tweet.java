@@ -211,7 +211,7 @@ public class Tweet
             System.out.println(letter);
             if(dictPos == null)
             {
-                if(goodLength > 2)
+                if(goodLength > 0)
                 {
                     words.add(currWord.substring(0, goodLength));
                     letter = goodLetter + 1;
