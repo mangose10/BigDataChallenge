@@ -139,17 +139,17 @@ public class Tweet
             }
             if(currCh == '#')
             {
-                //tweetWords.addAll(findWords(tag));
+                tweetWords.addAll(findWords(tag));
                 return processTag(tweetPos);
             }
             if(currCh == '\'')
             {
-                //tweetWords.addAll(findWords(tag));
+                tweetWords.addAll(findWords(tag));
                 return processContraction(tweetPos, "");
             }
             if(Character.isWhitespace(currCh))
             {
-                //tweetWords.addAll(findWords(tag));
+                tweetWords.addAll(findWords(tag));
                 return tweetPos;
             }
         }
@@ -199,21 +199,28 @@ public class Tweet
         String currWord = "";
         char currLetter;
         TrieNode dictPos = dictRoot;
+        int goodLetter = 0;
+        int goodLength = 0;
+        int length = 0;
 
         for(int letter = 0; letter < wordsTogether.length(); letter++)
         {
             currLetter = wordsTogether.charAt(letter);
+            dictPos = dictPos.children[currLetter - 'a'];
+            length++;
 
-            if(dictPos.children[currLetter - 'a'] == null)
+            if(dictPos == null)
             {
-                words.add(currWord);
+                words.add(currWord.substring(0, goodLength));
+                letter = goodLetter + 1;
+                length = 0;
                 currWord = "";
-                dictPos = dictRoot;
             }
             else
+            if(dictPos.isWord)
             {
-                currWord += Character.toString(currLetter);
-                dictPos = dictPos.children[currLetter - 'a'];
+                goodLetter = letter;
+                goodLength = length;
             }
         }
 
