@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -12,19 +13,7 @@ public class WeightMaker {
     // Alphabet size (# of letters + 1 for space) 
     static final int ALPHABET_SIZE = 26 + 1; 
     static final int CATEGORY_COUNT = 8;
-      
-    // trie node 
-    static class TrieNode { 
 
-        TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
-        double[] category = new double[CATEGORY_COUNT];         /* used to store category weights and the disaster weight*/
-          
-        TrieNode(){ 
-            for (int i = 0; i < ALPHABET_SIZE; i++) { 
-                children[i] = null; 
-            }
-        } 
-    }; 
 
     //Class to store Tweet its category and whether its a diasaster
     public static class WeightedTweet {
@@ -75,6 +64,7 @@ public class WeightMaker {
             pCrawl = pCrawl.children[index]; 
         } 
 
+        pCrawl.isWord = true;
         pCrawl.category[category - 1] ++;
         pCrawl.category[CATEGORY_COUNT - 1] += disaster;
 
@@ -116,7 +106,8 @@ public class WeightMaker {
     } 
 
     /**
-     * Reads a csv file by using the "," delimiter. Creates an ArrayList of WeightedTweet to be inserted
+     * Reads a csv file by using the "," delimiter. Creates an ArrayList of WeightedTweet to be inserted.
+     * 
      * 
      * @param filename name of the file to read
      * @return ArrayList of WeightedTweet made from file values
@@ -125,31 +116,20 @@ public class WeightMaker {
     static ArrayList<WeightedTweet> readWeightedFile(String filename) throws FileNotFoundException {
 
         ArrayList<WeightedTweet> tweetList = new ArrayList<WeightedTweet>();
-        ArrayList<String> bufferArray = new ArrayList<String>();
+        ArrayList<String> inputArray = new ArrayList<String>();
         Scanner fileReader = new Scanner(new File(filename));
-        fileReader.useDelimiter(",");
 
-        while (fileReader.hasNext()){
-            
-            bufferArray.add(fileReader.next());
+        while (fileReader.hasNextLine()){
+            inputArray.add(fileReader.nextLine());
         }
 
-        //when inserting a weighted tweet bufferArray.size() should always be a multiple of 3
-        for(int i = 0; i < bufferArray.size()/3; i++){
+        for(int i = 0; i < inputArray.size(); i++){
 
-            String test = "me with the last bottle of bottled water in florida apparently florida";
-            ArrayList<String> tList = new ArrayList<String>();
-            for(String text:test.split(" ")) {
-                tList.add(text);
-            }
+            String[] line = inputArray.get(i).split(",");
 
-            //For every i % 3 == 0, the last character is an "invisible" symbol that could be \n but to
-            //make sure I'll just remove it all together, the expected value for a i % 3 == 0 is 0 or 1
-
-            //WeightedTweet curTweet = new WeightedTweet(new Tweet(bufferArray.get(i)).tweetWords,
-            WeightedTweet curTweet = new WeightedTweet(tList,
-                                                       Integer.parseInt(bufferArray.get(i + 1)),
-                                                       bufferArray.get(i + 2).charAt(0) - '0');
+            WeightedTweet curTweet = new WeightedTweet(new Tweet(line[0]).getWords(),
+                                                       Integer.parseInt(line[1]),
+                                                       Integer.parseInt(line[2]));
                                                        
             tweetList.add(curTweet);
         }
