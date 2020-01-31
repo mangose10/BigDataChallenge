@@ -18,6 +18,7 @@ public class WeightCalculator
     {
          traverse(root, "");
     }
+
     /**
      * Traverse through the Trie and add an existing children to the stack and 
      * continue to travse through until u reach a null terminating child
@@ -59,6 +60,18 @@ public class WeightCalculator
         }
     }
 
+
+    /**
+     * Iterates throught he double array checking the weight of each category.
+     * If all the weights are equal to zero we will ignore that array, and not calculate
+     * anything for that array. As well if it is below the threshold we will also ignore
+     * that array from the trie. 
+     * 
+     * Calculating the weight by getting the sum of all the weights except disaster, then
+     * divide each weight by the sum of weights. Including the disaster category
+     * @param weight
+     * @return updated array with the correct weight counts
+     */
     private double[] calculateWeight(double[] weight)
     {
          double total = 0.0;
@@ -79,6 +92,13 @@ public class WeightCalculator
         return weight;
     }
 
+    /**
+     * Takes in the string that is being read, and writes that strings
+     * array into the a file called keyWeights. If the file does exist
+     * it will just re-write to the file, When it the file doesn't exist 
+     * it will create a new one and write to it.
+     * @param key
+     */
     public void writeFile(String key)
     {
         try
