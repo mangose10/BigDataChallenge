@@ -2,6 +2,7 @@ package bigdata;
 
 import java.util.ArrayList;
 import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Tweet 
@@ -25,11 +26,10 @@ public class Tweet
             }
         } 
 
-        void loadDictionary()
+        void loadDictionary() throws FileNotFoundException
         {
-            FileReader inFile = new FileReader("dictionary.txt");
+            FileReader inFile = null;inFile = new FileReader("dictionary.txt");
             Scanner in = new Scanner(inFile);
-
             int numWords = Integer.parseInt(in.nextLine());
             int letter = 0;
             String currWord;
@@ -43,21 +43,23 @@ public class Tweet
                 {
                     if(dictNode.children[currWord.charAt(letter) - 'a'] == null)
                     {
-                        dictNode.children[currWord.charAt(letter) - 'a'] = new dictNode();
+                        dictNode.children[currWord.charAt(letter) - 'a'] = new TrieNode();
                     }
                     dictNode = dictNode.children[currWord.charAt(letter) - 'a'];
                 }
                 dictNode.isWord = true;
             }
+            in.close();
         }
     }; 
 
-    public Tweet(String text)
+    public Tweet(String text) throws FileNotFoundException
     {
         this.text = text;
         tweetWords = new ArrayList<String>();
-        processTweet();
+        dictRoot = new TrieNode();
         dictRoot.loadDictionary();
+        processTweet();
     }
     
     public ArrayList<String> getWords()
@@ -195,7 +197,26 @@ public class Tweet
     ArrayList<String> findWords(String wordsTogether)
     {
         ArrayList<String> words = new ArrayList<String>();
-        String currWord;
+        String currWord = "";
+        char currLetter;
+        TrieNode dictPos = dictRoot;
+
+        for(int letter = 0; letter < wordsTogether.length(); letter++)
+        {
+            currLetter = wordsTogether.charAt(letter);
+
+            if(dictPos.children[currLetter - 'a'] == null)
+            {
+                words.add(currWord);
+                currWord = "";
+                dictPos = dictRoot;
+            }
+            else
+            {
+                currWord += Character.toString(currLetter);
+                dictPos = dictPos.children[currLetter - 'a'];
+            }
+        }
 
         return words;
     }
