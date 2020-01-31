@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -11,7 +10,7 @@ public class Tweet
     //arraylist of all words from tweet
     private ArrayList<String> tweetWords;
     static final int ALPHABET_SIZE = 26; 
-    private TrieNode dictRoot;
+    static private TrieNode dictRoot;
     
     static class TrieNode { 
 
@@ -32,11 +31,10 @@ public class Tweet
             int numWords = Integer.parseInt(in.nextLine());
             int letter = 0;
             String currWord;
-            TrieNode dictNode = this;
-
+            TrieNode dictNode = dictRoot;
             for(int word = 0; word < numWords; word++)
             {
-                dictNode = this;
+                dictNode = dictRoot;
                 currWord = in.nextLine();
                 for(letter = 0; letter <currWord.length(); letter++)
                 {
@@ -206,15 +204,22 @@ public class Tweet
         for(int letter = 0; letter < wordsTogether.length(); letter++)
         {
             currLetter = wordsTogether.charAt(letter);
+            currWord += currLetter;
             dictPos = dictPos.children[currLetter - 'a'];
             length++;
 
+            System.out.println(letter);
             if(dictPos == null)
             {
-                words.add(currWord.substring(0, goodLength));
-                letter = goodLetter + 1;
+                if(goodLength > 2)
+                {
+                    words.add(currWord.substring(0, goodLength));
+                    letter = goodLetter + 1;
+                }
                 length = 0;
+                goodLength = 0;
                 currWord = "";
+                dictPos = dictRoot;
             }
             else
             if(dictPos.isWord)
