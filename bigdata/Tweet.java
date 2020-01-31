@@ -207,8 +207,6 @@ public class Tweet
             currWord += currLetter;
             dictPos = dictPos.children[currLetter - 'a'];
             length++;
-
-            System.out.println(letter);
             if(dictPos == null)
             {
                 if(goodLength > 0)
