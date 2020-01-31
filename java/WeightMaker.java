@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import bigdata.Tweet;
+
 
 public class WeightMaker { 
       
@@ -159,7 +161,16 @@ public class WeightMaker {
        
     // Driver 
     public static void main(String args[]) { 
-
+        Tweet test;
+        try{
+        test = new Tweet("aljsghjhs #aksjdhdkas");
+        }
+        catch(Exception e){
+            System.out.println("no dict");
+            return;
+        }
+        System.out.println(test.getWords());
+        /*
         root = new TrieNode(); 
         ArrayList<WeightedTweet> tweets = new ArrayList<WeightedTweet>();
         try {
@@ -188,13 +199,14 @@ public class WeightMaker {
         insertWithWeight("last", 1, 0);
 
         // Search for different keys 
-        System.out.println(Arrays.toString(weightedSearch("these")));           /* test null */
-        System.out.println(Arrays.toString(weightedSearch("bottle")));          /* test word */
-        System.out.println(Arrays.toString(weightedSearch("florida")));         /* test repeated word */
-        System.out.println(Arrays.toString(weightedSearch("last")));            /* test word in two categories*/
-        System.out.println(Arrays.toString(weightedSearch("me with")));         /* test two words */
-        System.out.println(Arrays.toString(weightedSearch("last bottle of")));  /* test three words */
-        
+        System.out.println(Arrays.toString(weightedSearch("these")));
+        System.out.println(Arrays.toString(weightedSearch("bottle")));
+        System.out.println(Arrays.toString(weightedSearch("florida")));
+        System.out.println(Arrays.toString(weightedSearch("last")));
+        System.out.println(Arrays.toString(weightedSearch("me with")));
+        System.out.println(Arrays.toString(weightedSearch("last bottle of")));
+        */
+
     } 
 } 
 // This code is contributed by Sumit Ghosh 
