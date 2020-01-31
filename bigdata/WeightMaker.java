@@ -2,7 +2,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -140,11 +140,11 @@ public class WeightMaker {
     // Driver 
     public static void main(String args[]) { 
         try{
-            Tweet test = new Tweet("aljsghjhs #theldjfhlakj hlaevf");
+            Tweet test = new Tweet("aljsghjhs #theldjfbutthlakej hlaevf");
             System.out.println(test.getWords());
         }
         catch(Exception e){
-            System.out.println("\nno dict\n");
+            System.out.println("\nno dict\n" + e);
             return;
         }
     } 
