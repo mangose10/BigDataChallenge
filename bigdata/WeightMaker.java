@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import bigdata.Tweet;
-
 
 public class WeightMaker { 
       
@@ -141,52 +139,13 @@ public class WeightMaker {
        
     // Driver 
     public static void main(String args[]) { 
-        Tweet test;
         try{
-        test = new Tweet("aljsghjhs #aksjdhdkas");
+            Tweet test = new Tweet("aljsghjhs #theldjfhlakj hlaevf");
+            System.out.println(test.getWords());
         }
         catch(Exception e){
-            System.out.println("no dict");
+            System.out.println("\nno dict\n");
             return;
         }
-        System.out.println(test.getWords());
-        /*
-        root = new TrieNode(); 
-        ArrayList<WeightedTweet> tweets = new ArrayList<WeightedTweet>();
-        try {
-            tweets = readWeightedFile("../input.csv");
-        } catch (FileNotFoundException event) {
-            event.printStackTrace();
-        }
-
-        for (WeightedTweet tweet: tweets){
-            for (String key: tweet.keys){
-                insertWithWeight(key, tweet.category, tweet.disaster);
-            }
-
-            for (int i = 0; i < tweet.keys.size() - 1; i++){
-                String twoWord = tweet.keys.get(i) + " " + tweet.keys.get(i + 1);
-                insertWithWeight(twoWord, tweet.category, tweet.disaster);
-            }
-
-            for (int i = 0; i < tweet.keys.size() - 2; i++){
-                String twoWord = tweet.keys.get(i) + " " + tweet.keys.get(i + 1) + " " + tweet.keys.get(i + 2);
-                insertWithWeight(twoWord, tweet.category, tweet.disaster);
-            }
-        }
-
-        //For testing purposes we're gonna add "last" as 1, 0
-        insertWithWeight("last", 1, 0);
-
-        // Search for different keys 
-        System.out.println(Arrays.toString(weightedSearch("these")));
-        System.out.println(Arrays.toString(weightedSearch("bottle")));
-        System.out.println(Arrays.toString(weightedSearch("florida")));
-        System.out.println(Arrays.toString(weightedSearch("last")));
-        System.out.println(Arrays.toString(weightedSearch("me with")));
-        System.out.println(Arrays.toString(weightedSearch("last bottle of")));
-        */
-
     } 
-} 
-// This code is contributed by Sumit Ghosh 
+}
