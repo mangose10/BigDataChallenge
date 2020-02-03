@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Tweet 
 {
@@ -11,9 +13,9 @@ public class Tweet
     private ArrayList<String> tweetWords;
     static final int ALPHABET_SIZE = 26; 
     static private TrieNode dictRoot;
+    static private TreeMap<String,ArrayList<String>> contractions;
     
     static class TrieNode { 
-
         TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
         boolean isWord;
 
@@ -24,9 +26,11 @@ public class Tweet
             }
         } 
 
+        //loads a dictionary from dictionary.txt which need to be in the same file
         void loadDictionary() throws FileNotFoundException
         {
-            FileReader inFile = null;inFile = new FileReader("dictionary.txt");
+            FileReader inFile = null;
+            inFile = new FileReader("dictionary.txt");
             Scanner in = new Scanner(inFile);
             int numWords = Integer.parseInt(in.nextLine());
             int letter = 0;
@@ -50,12 +54,31 @@ public class Tweet
         }
     }; 
 
+    private void loadContractions() throws FileNotFoundException
+    {
+        FileReader inFile = null;
+        inFile = new FileReader("contractions.txt");
+        Scanner in = new Scanner(inFile);
+        int numCnts = Integer.parseInt(in.nextLine());
+        ArrayList<String> words = new ArrayList<String>();
+
+        for(int cnt = 0; cnt < numCnts; cnt++)
+        {
+            words = new ArrayList<String>(Arrays.asList(in.nextLine().split(" ")));
+            System.out.println(words);
+            contractions.put(words.get(0), new ArrayList<String>(words.subList(1, words.size()-1)));
+        }
+
+        in.close();
+    }
+
     public Tweet(String text) throws FileNotFoundException
     {
         this.text = text;
         tweetWords = new ArrayList<String>();
         dictRoot = new TrieNode();
         dictRoot.loadDictionary();
+        loadContractions();
         processTweet();
     }
     
@@ -151,7 +174,7 @@ public class Tweet
                 return tweetPos;
             }
         }
-        //tweetWords.addAll(findWords(tag));
+        tweetWords.addAll(findWords(tag));
         return tweetPos;
     }
     
@@ -178,16 +201,16 @@ public class Tweet
             }
             if(currCh == '#')
             {
-                //tweetWords.addAll(uncontract(currWord));
+                tweetWords.addAll(uncontract(currWord));
                 return processTag(tweetPos);
             }
             if(Character.isWhitespace(currCh))
             {
-                //tweetWords.addAll(uncontract(currWord));
+                tweetWords.addAll(uncontract(currWord));
                 return tweetPos;
             }
         }
-        //tweetWords.addAll(uncontract(currWord));
+        tweetWords.addAll(uncontract(currWord));
         return tweetPos;
     }
 
@@ -228,5 +251,16 @@ public class Tweet
         }
 
         return words;
+    }
+
+    ArrayList<String> uncontract(String contraction)
+    {
+        if(contractions.containsKey(contraction))
+        {
+            return contractions.get(contraction);
+        }
+        ArrayList<String> word = new ArrayList<String>();
+        word.add(contraction);
+        return word;
     }
 }
