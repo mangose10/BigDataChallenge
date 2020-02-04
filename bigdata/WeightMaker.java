@@ -140,7 +140,7 @@ public class WeightMaker {
     // Driver 
     public static void main(String args[]) { 
         try{
-            Tweet test = new Tweet("can't shouldn't've aljsghjhs #theldjfbutthlakej hlaevf");
+            Tweet test = new Tweet("can't shouldn't've #ohboyherecomesthehurricane haven't water");
             System.out.println(test.getWords());
         }
         catch(Exception e){
