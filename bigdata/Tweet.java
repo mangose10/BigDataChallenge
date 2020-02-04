@@ -65,8 +65,7 @@ public class Tweet
         for(int cnt = 0; cnt < numCnts; cnt++)
         {
             words = new ArrayList<String>(Arrays.asList(in.nextLine().split(" ")));
-            System.out.println(words);
-            contractions.put(words.get(0), new ArrayList<String>(words.subList(1, words.size()-1)));
+            contractions.put(words.get(0), new ArrayList<String>(words.subList(1, words.size())));
         }
 
         in.close();
@@ -78,6 +77,7 @@ public class Tweet
         tweetWords = new ArrayList<String>();
         dictRoot = new TrieNode();
         dictRoot.loadDictionary();
+        contractions = new TreeMap<String,ArrayList<String>>();
         loadContractions();
         processTweet();
     }
@@ -116,7 +116,8 @@ public class Tweet
             //if we see a ', call a helper function for dealing with contractions
             if(currCh == '\'')
             {
-                processContraction(tweetPos, currWord);
+                tweetPos = processContraction(tweetPos, currWord);
+                currWord = "";
             }
             //if we see a whitespace, finish the word we're building
             if(Character.isWhitespace(currCh))
@@ -235,7 +236,7 @@ public class Tweet
                 if(goodLength > 0)
                 {
                     words.add(currWord.substring(0, goodLength));
-                    letter = goodLetter + 1;
+                    letter = goodLetter;
                 }
                 length = 0;
                 goodLength = 0;
@@ -249,7 +250,10 @@ public class Tweet
                 goodLength = length;
             }
         }
-
+        if(goodLength > 0)
+        {
+            words.add(currWord.substring(0, goodLength));
+        }
         return words;
     }
 
