@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 
 public class Tweet 
 {
@@ -15,6 +15,23 @@ public class Tweet
     static private TrieNode dictRoot;
     static private TreeMap<String,ArrayList<String>> contractions;
     
+    public Tweet(String text) throws FileNotFoundException
+    {
+        this.text = text;
+        tweetWords = new ArrayList<String>();
+        dictRoot = new TrieNode();
+        dictRoot.loadDictionary();
+        contractions = new TreeMap<String,ArrayList<String>>();
+        loadContractions();
+        processTweet();
+    }
+    
+    public ArrayList<String> getWords()
+    {
+        return tweetWords;
+    }
+    
+    //private class for storing dictionary with fast lookups
     static class TrieNode { 
         TrieNode[] children = new TrieNode[ALPHABET_SIZE]; 
         boolean isWord;
@@ -26,7 +43,7 @@ public class Tweet
             }
         } 
 
-        //loads a dictionary from dictionary.txt which need to be in the same file
+        //loads a dictionary from dictionary.txt which need to be in the same folder
         void loadDictionary() throws FileNotFoundException
         {
             FileReader inFile = null;
@@ -54,6 +71,7 @@ public class Tweet
         }
     }; 
 
+    //loads a lookup table for contractions from contractions.txt which needs to be in the same folder
     private void loadContractions() throws FileNotFoundException
     {
         FileReader inFile = null;
@@ -70,23 +88,8 @@ public class Tweet
 
         in.close();
     }
-
-    public Tweet(String text) throws FileNotFoundException
-    {
-        this.text = text;
-        tweetWords = new ArrayList<String>();
-        dictRoot = new TrieNode();
-        dictRoot.loadDictionary();
-        contractions = new TreeMap<String,ArrayList<String>>();
-        loadContractions();
-        processTweet();
-    }
     
-    public ArrayList<String> getWords()
-    {
-        return tweetWords;
-    }
-    
+    //
     private void processTweet()
     {
         String currWord = "";
@@ -215,7 +218,10 @@ public class Tweet
         return tweetPos;
     }
 
-    ArrayList<String> findWords(String wordsTogether)
+    //function for splitting a string of unseperated words
+    //input: string of unseperated words
+    //output: ArrayList of word in the string that were recognized
+    private ArrayList<String> findWords(String wordsTogether)
     {
         ArrayList<String> words = new ArrayList<String>();
         String currWord = "";
