@@ -2,7 +2,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -139,44 +139,13 @@ public class WeightMaker {
        
     // Driver 
     public static void main(String args[]) { 
-
-        root = new TrieNode(); 
-        ArrayList<WeightedTweet> tweets = new ArrayList<WeightedTweet>();
-        try {
-            tweets = readWeightedFile("../input.csv");
-        } catch (FileNotFoundException event) {
-            event.printStackTrace();
+        try{
+            Tweet test = new Tweet("can't shouldn't've #ohboyherecomesthehurricane haven't water");
+            System.out.println(test.getWords());
         }
-
-        for (WeightedTweet tweet: tweets){
-            for (String key: tweet.keys){
-                insertWithWeight(key, tweet.category, tweet.disaster);
-            }
-
-            for (int i = 0; i < tweet.keys.size() - 1; i++){
-                String twoWord = tweet.keys.get(i) + " " + tweet.keys.get(i + 1);
-                insertWithWeight(twoWord, tweet.category, tweet.disaster);
-            }
-
-            for (int i = 0; i < tweet.keys.size() - 2; i++){
-                String twoWord = tweet.keys.get(i) + " " + tweet.keys.get(i + 1) + " " + tweet.keys.get(i + 2);
-                insertWithWeight(twoWord, tweet.category, tweet.disaster);
-            }
+        catch(Exception e){
+            System.out.println("\nno dict\n" + e);
+            return;
         }
-
-        //For testing purposes we're gonna add "last" as 1, 0
-        insertWithWeight("last", 1, 0);
-
-        // Search for different keys 
-        System.out.println(Arrays.toString(weightedSearch("these")));           /* test null */
-        System.out.println(Arrays.toString(weightedSearch("bottle")));          /* test word */
-        System.out.println(Arrays.toString(weightedSearch("florida")));         /* test repeated word */
-        System.out.println(Arrays.toString(weightedSearch("last")));            /* test word in two categories*/
-        System.out.println(Arrays.toString(weightedSearch("me with")));         /* test two words */
-        System.out.println(Arrays.toString(weightedSearch("last bottle of")));  /* test three words */
-
-        WeightCalculator test2 = new WeightCalculator(root);
-        test2.writeFile(test2.output);
     } 
-} 
-// This code is contributed by Sumit Ghosh 
+}
