@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class WeightCalculator
 {
     String output = "";
+    final static double THRESHOLD = 0.20;
 
     /**
      * Takes in already filled trie and passes it through a traversal function
@@ -74,22 +75,52 @@ public class WeightCalculator
      */
     private double[] calculateWeight(double[] weight)
     {
-         double total = 0.0;
+        double total = 0.0;
 
         int length = weight.length;
 
-        for(int i = 0; i < length-1; i++)
-        {
-            total += weight[i];
-        }
+        boolean isValid = checkThreshold(weight, length);
 
-        for(int i = 0; i < length; i++)
+        if(isValid)
         {
-            weight[i] = weight[i] / total;
+            for(int i = 0; i < length-1; i++)
+            {
+                total += weight[i];
+            }
+    
+            for(int i = 0; i < length; i++)
+            {
+                weight[i] = weight[i] / total;
+            }
         }
-          
+        else
+        {
+            return weight;
+        }
 
         return weight;
+    }
+
+    private boolean checkThreshold(double[] weight, int length)
+    {
+        int count = 0;
+        
+        for(int i = 0; i < length; i++)
+        {
+            if(weight[i] <= THRESHOLD)
+            {
+                count++;
+            }
+        }
+
+        if(count == length)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
