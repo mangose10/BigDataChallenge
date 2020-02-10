@@ -4,68 +4,77 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class WeightCalculator
 {
-    String output = "";
-    final static double THRESHOLD = 0.20;
+     String output = "";
 
-    /**
+     double AVERAGE = 0.0;
+
+     double THRESHOLD = 0.0;
+
+     private double[] TOTAL = root.category;
+
+     /**
      * Takes in already filled trie and passes it through a traversal function
      * that is going to add the existing children to a stack.
      * @param root
      */
-    public WeightCalculator(TrieNode root)
-    {
-         traverse(root, "");
-    }
+     public WeightCalculator(TrieNode root)
+     {
+          traverse(root, "");
+     }
 
-    /**
+     /**
      * Traverse through the Trie and add an existing children to the stack and 
      * continue to travse through until u reach a null terminating child
      * @param root
      */
-    private void traverse(TrieNode root, String key)
-    {
-        if(root == null)
-        {
-            return;
-        }         
+     private void traverse(TrieNode root, String key)
+     {
+          if(root == null)
+          {
+               return;
+          }         
 
-        if(root.isWord)
-        {
-            System.out.println(key);
-            root.category = calculateWeight(root.category);
-            String line = Arrays.toString(root.category);            
-            boolean isValid = checkThreshold(root.category);
+          if(root.isWord)
+          {
+               System.out.println(key);
 
-            if(isValid)
-            {
-                output += key + ',' + line.substring(1, line.length() - 1).replace(" ", "") + '\n';
-            }
-        }
+               root.category = calculateWeight(root.category);
+
+               THRESHOLD = thresholdMaker(root.category);
+            
+               boolean isValid = checkThreshold(root.category);
+
+               if(isValid)
+               {
+                    output += key + ',' + Arrays.toString(root.category) + '\n';
+               }
+          }
           
-        int length = root.children.length;
+          int length = root.children.length;
 
-        for(int i = 0; i < length; i++)
-        {
-            if(root.children[i] == null)
-            {
-                continue;
-            }
-            else
-            {
-                if(i == 26)
-                {
+          for(int i = 0; i < length; i++)
+          {
+               if(root.children[i] == null)
+               {
+                    continue;
+               }
+               else
+               {
+                    if(i == 26)
+                    {
                     traverse(root.children[i], key + " ");
-                }
-                else
-                {
-                    traverse(root.children[i], key + Character.toString((char)('a' + i)));
-                }
-            }
-        }
-    }
+                    }
+               else
+                    {
+                    traverse(root.children[i], key + Character.toString('a' + i));
+                    }
+               }
+          }
+     }
 
 
     /**
@@ -79,42 +88,63 @@ public class WeightCalculator
      * @param weight
      * @return updated array with the correct weight counts
      */
-    private double[] calculateWeight(double[] weight)
-    {
-        double total = 0.0;
+     private double[] calculateWeight(double[] weight)
+     {
+          double total = 0.0;
 
-        int length = weight.length;
+          int length = weight.length;
+     
+          for(int i = 0; i < length; i++)
+          {
+               weight[i] = weight[i] / TOTAL[i];
+          }
 
-        for(int i = 0; i < length-1; i++)
-        {
-            total += weight[i];
-        }
-    
-        for(int i = 0; i < length; i++)
-        {
-            weight[i] = weight[i] / total;
-        }
+          return weight;
+     }
 
-        return weight;
-    }
+    /**
+     * Checks the array to see if any of the weights are below
+     * the given threshold. If all the values of the array are 
+     * below the given threshold then ignore that weight 
+     * @param weight
+     * @return
+     */
+     private boolean checkThreshold(double[] weight)
+     {
+          int count = 0;
+          int length = weight.length;
+          
+          for(int i = 0; i < length; i++)
+          {
+               if(weight[i] <= THRESHOLD)
+               {
+                    count++;
+               }
+          }
 
-    private boolean checkThreshold(double[] weight)
-    {
-        int count = 0;
-        int length = weight.length;
-        
-        for(int i = 0; i < length; i++)
-        {
-            if(weight[i] > THRESHOLD)
-            {
-                return true;
-            }
-        }
+          if(count == length)
+          {
+               return true;
+          }
+          else
+          {
+               return false;
+          }
+     }
 
-    
-        return false;
+     private void thresholdMaker(double[] probability)
+     {
+          double max = Collections.max(Array.asList(probability));;
 
-    }
+          double average = 0.0;
+
+          for(int i = 0; i < probability.length; i++)
+          {
+               average += probability[i];
+          }
+
+          THRESHOLD = max - average;
+     }
 
     /**
      * Takes in the string that is being read, and writes that strings
@@ -123,26 +153,26 @@ public class WeightCalculator
      * it will create a new one and write to it.
      * @param key
      */
-    public void writeFile(String key)
-    {
-        try
-        {
-            File file = new File("../keyWeights.csv");
+     public void writeFile(String key)
+     {
+          try
+          {
+               File file = new File("../keyWeights.csv");
 
-            if(!file.exists())
-            {
-                file.createNewFile();
-            }
+               if(!file.exists())
+               {
+                    file.createNewFile();
+               }
 
-            FileWriter outputFile = new FileWriter(file);
+               FileWriter outputFile = new FileWriter(file);
 
-            outputFile.write(key);
+               outputFile.write(key);
 
-            outputFile.close();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
+               outputFile.close();
+          }
+          catch(Exception e)
+          {
+               e.printStackTrace();
+          }
+     }
 }
