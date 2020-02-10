@@ -7,65 +7,65 @@ import java.util.Arrays;
 
 public class WeightCalculator
 {
-    String output = "";
-    final static double THRESHOLD = 0.20;
+     String output = "";
+     public double[] THRESHOLD;
 
-    /**
+     /**
      * Takes in already filled trie and passes it through a traversal function
      * that is going to add the existing children to a stack.
      * @param root
      */
-    public WeightCalculator(TrieNode root)
-    {
-         traverse(root, "");
-    }
+     public WeightCalculator(TrieNode root)
+     {
+          traverse(root, "");
+     }
 
-    /**
+     /**
      * Traverse through the Trie and add an existing children to the stack and 
      * continue to travse through until u reach a null terminating child
      * @param root
      */
-    private void traverse(TrieNode root, String key)
-    {
-        if(root == null)
-        {
-            return;
-        }         
+     private void traverse(TrieNode root, String key)
+     {
+          if(root == null)
+          {
+               return;
+          }         
 
-        if(root.isWord)
-        {
-            System.out.println(key);
-            root.category = calculateWeight(root.category);
+          if(root.isWord)
+          {
+               System.out.println(key);
+               root.category = calculateWeight(root.category);
             
-            boolean isValid = checkThreshold(root.category);
+               boolean isValid = checkThreshold(root.category);
 
-            if(isValid)
-            {
-                output += key + ',' + Arrays.toString(root.category) + '\n';
-            }
-        }
+               if(isValid)
+               {
+                    output += key + ',' + Arrays.toString(root.category) + '\n';
+               }
+          }
           
-        int length = root.children.length;
+          int length = root.children.length;
 
-        for(int i = 0; i < length; i++)
-        {
-            if(root.children[i] == null)
-            {
-                continue;
-            }
-            else
-            {
-                if(i == 26)
-                {
+          for(int i = 0; i < length; i++)
+          {
+               if(root.children[i] == null)
+               {
+                    continue;
+               }
+               else
+               {
+                    if(i == 26)
+                    {
                     traverse(root.children[i], key + " ");
-                }
-                else
-                {
+                    }
+               else
+                    {
                     traverse(root.children[i], key + Character.toString('a' + i));
-                }
-            }
-        }
-    }
+                    }
+               }
+          }
+     }
 
 
     /**
@@ -79,47 +79,54 @@ public class WeightCalculator
      * @param weight
      * @return updated array with the correct weight counts
      */
-    private double[] calculateWeight(double[] weight)
-    {
-        double total = 0.0;
+     private double[] calculateWeight(double[] weight)
+     {
+          double total = 0.0;
 
-        int length = weight.length;
+          int length = weight.length;
 
-        for(int i = 0; i < length-1; i++)
-        {
-            total += weight[i];
-        }
-    
-        for(int i = 0; i < length; i++)
-        {
-            weight[i] = weight[i] / total;
-        }
+          for(int i = 0; i < length-1; i++)
+          {
+               total += weight[i];
+          }
+     
+          for(int i = 0; i < length; i++)
+          {
+               weight[i] = weight[i] / total;
+          }
 
-        return weight;
-    }
+          return weight;
+     }
 
-    private boolean checkThreshold(double[] weight)
-    {
-        int count = 0;
-        int length = weight.length;
-        
-        for(int i = 0; i < length; i++)
-        {
-            if(weight[i] <= THRESHOLD)
-            {
-                count++;
-            }
-        }
+    /**
+     * Checks the array to see if any of the weights are below
+     * the given threshold. If all the values of the array are 
+     * below the given threshold then ignore that weight 
+     * @param weight
+     * @return
+     */
+     private boolean checkThreshold(double[] weight)
+     {
+          int count = 0;
+          int length = weight.length;
+          
+          for(int i = 0; i < length; i++)
+          {
+               if(weight[i] <= THRESHOLD[i])
+               {
+                    count++;
+               }
+          }
 
-        if(count == length)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+          if(count == length)
+          {
+               return true;
+          }
+          else
+          {
+               return false;
+          }
+     }
 
     /**
      * Takes in the string that is being read, and writes that strings
@@ -128,26 +135,26 @@ public class WeightCalculator
      * it will create a new one and write to it.
      * @param key
      */
-    public void writeFile(String key)
-    {
-        try
-        {
-            File file = new File("../keyWeights.csv");
+     public void writeFile(String key)
+     {
+          try
+          {
+               File file = new File("../keyWeights.csv");
 
-            if(!file.exists())
-            {
-                file.createNewFile();
-            }
+               if(!file.exists())
+               {
+                    file.createNewFile();
+               }
 
-            FileWriter outputFile = new FileWriter(file);
+               FileWriter outputFile = new FileWriter(file);
 
-            outputFile.write(key);
+               outputFile.write(key);
 
-            outputFile.close();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
+               outputFile.close();
+          }
+          catch(Exception e)
+          {
+               e.printStackTrace();
+          }
+     }
 }
