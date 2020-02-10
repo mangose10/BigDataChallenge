@@ -105,20 +105,15 @@ public class WeightCalculator
         
         for(int i = 0; i < length; i++)
         {
-            if(weight[i] <= THRESHOLD)
+            if(weight[i] > THRESHOLD)
             {
-                count++;
+                return true;
             }
         }
 
-        if(count == length)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    
+        return false;
+
     }
 
     /**

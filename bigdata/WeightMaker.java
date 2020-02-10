@@ -126,7 +126,7 @@ public class WeightMaker {
 
         String curLine  = fileReader.readLine();
         while ((curLine  = fileReader.readLine()) != null){
-            System.out.println(curLine);
+            //System.out.println(curLine);
             if (!curLine.equals(",,") &&  !curLine.equals("")){
                 inputArray.add(curLine.replaceAll("’", "'")); //.replaceAll("“", "\"").replaceAll("", "\"")
             }
@@ -139,7 +139,7 @@ public class WeightMaker {
             line[1] = inputArray.get(i).substring(inputArray.get(i).length() - 3, inputArray.get(i).length() - 2);
             line[2] = inputArray.get(i).substring(inputArray.get(i).length() - 1);
             
-            System.out.println(Arrays.toString(line));
+            //System.out.println(Arrays.toString(line));
             WeightedTweet curTweet = new WeightedTweet(new Tweet(line[0]).getWords(),
                                                        Integer.parseInt(line[1]),
                                                        Integer.parseInt(line[2]));
@@ -168,23 +168,30 @@ public class WeightMaker {
         
         for (WeightedTweet tweet: tweets){
             for (String key: tweet.keys){
-                System.out.println(key);
+                //System.out.println(key);
                 insertWithWeight(key, tweet.category, tweet.disaster);
+                insertWithWeight("", tweet.category, tweet.disaster);
             }
 
             for (int i = 0; i < tweet.keys.size() - 1; i++){
                 String twoWord = tweet.keys.get(i) + " " + tweet.keys.get(i + 1);
                 insertWithWeight(twoWord, tweet.category, tweet.disaster);
+                insertWithWeight("", tweet.category, tweet.disaster);
             }
 
             for (int i = 0; i < tweet.keys.size() - 2; i++){
                 String twoWord = tweet.keys.get(i) + " " + tweet.keys.get(i + 1) + " " + tweet.keys.get(i + 2);
                 insertWithWeight(twoWord, tweet.category, tweet.disaster);
+                insertWithWeight("", tweet.category, tweet.disaster);
             }
+
+            
         }
 
         WeightCalculator wCalc = new WeightCalculator(root);
         wCalc.writeFile(wCalc.output);
+        System.out.println("Let's chck this out here!!!");
+        System.out.println(Arrays.toString(root.category));
 
     } 
 }
