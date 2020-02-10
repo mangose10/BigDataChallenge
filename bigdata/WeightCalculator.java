@@ -51,7 +51,8 @@ public class WeightCalculator
 
                if(isValid)
                {
-                    output += key + ',' + Arrays.toString(root.category) + '\n';
+                    output += key + ',' + 
+                    Arrays.toString(root.category).replace("[", "").replace("]", "").replace(" ", "") + '\n';
                }
           }
           
@@ -138,6 +139,8 @@ public class WeightCalculator
 
      private void thresholdMaker(double[] probability)
      {
+          double significance = 0.0;
+
           Double[] buffer = new Double[probability.length];
 
           for(int i = 0; i < buffer.length; i++)
@@ -154,7 +157,12 @@ public class WeightCalculator
                average += probability[i];
           }
 
-          THRESHOLD = max - average;
+          significance = max - average;
+
+          if(significance > THRESHOLD)
+          {
+              THRESHOLD = significance;
+          }
      }
 
     /**
