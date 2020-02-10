@@ -23,6 +23,7 @@ public class WeightCalculator
      public WeightCalculator(TrieNode root)
      {  
           TOTAL = root.category;
+          root.isWord = false;
           traverse(root, "");
          
      }
@@ -44,12 +45,11 @@ public class WeightCalculator
                System.out.println(key);
 
                root.category = calculateWeight(root.category);
-
-               thresholdMaker(root.category);
-            
-               boolean isValid = checkThreshold(root.category);
-
-               if(isValid)
+               
+                System.out.println(Arrays.toString(root.category));
+               //boolean isValid = thresholdMaker(root.category);//checkThreshold(root.category);
+               //System.out.println(isValid);
+               //if(isValid)
                {
                     output += key + ',' + 
                     Arrays.toString(root.category).replace("[", "").replace("]", "").replace(" ", "") + '\n';
@@ -98,12 +98,14 @@ public class WeightCalculator
           //System.out.println(Arrays.toString(weight));
           //System.out.println(Arrays.toString(TOTAL));
 
+          System.out.println(Arrays.toString(weight));
           for(int i = 0; i < length; i++)
           {
               //System.out.println(weight[i] + " : " + i);
-               weight[i] = weight[i] / TOTAL[i];
+               weight[i] /= TOTAL[i];
           }
-
+          System.out.println(Arrays.toString(TOTAL));
+          System.out.println(Arrays.toString(weight));
           return weight;
      }
 
@@ -116,28 +118,20 @@ public class WeightCalculator
      */
      private boolean checkThreshold(double[] weight)
      {
-          int count = 0;
           int length = weight.length;
           
           for(int i = 0; i < length; i++)
           {
-               if(weight[i] <= THRESHOLD)
+               if(weight[i] > THRESHOLD)
                {
-                    count++;
+                    return true;
                }
           }
-
-          if(count == length)
-          {
-               return true;
-          }
-          else
-          {
-               return false;
-          }
+          
+          return false;
      }
 
-     private void thresholdMaker(double[] probability)
+     private boolean thresholdMaker(double[] probability)
      {
           double significance = 0.0;
 
@@ -157,12 +151,16 @@ public class WeightCalculator
                average += probability[i];
           }
 
+          average/= probability.length;
+
           significance = max - average;
+          System.out.println(significance);
 
           if(significance > THRESHOLD)
           {
-              THRESHOLD = significance;
+              return true;
           }
+          return false;
      }
 
     /**
