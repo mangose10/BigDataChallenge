@@ -36,7 +36,13 @@ public class WeightCalculator
         {
             System.out.println(key);
             root.category = calculateWeight(root.category);
-            output += key + ',' + Arrays.toString(root.category) + '\n';
+            
+            boolean isValid = checkThreshold(root.category);
+
+            if(isValid)
+            {
+                output += key + ',' + Arrays.toString(root.category) + '\n';
+            }
         }
           
         int length = root.children.length;
@@ -79,31 +85,23 @@ public class WeightCalculator
 
         int length = weight.length;
 
-        boolean isValid = checkThreshold(weight, length);
-
-        if(isValid)
+        for(int i = 0; i < length-1; i++)
         {
-            for(int i = 0; i < length-1; i++)
-            {
-                total += weight[i];
-            }
-    
-            for(int i = 0; i < length; i++)
-            {
-                weight[i] = weight[i] / total;
-            }
+            total += weight[i];
         }
-        else
+    
+        for(int i = 0; i < length; i++)
         {
-            return weight;
+            weight[i] = weight[i] / total;
         }
 
         return weight;
     }
 
-    private boolean checkThreshold(double[] weight, int length)
+    private boolean checkThreshold(double[] weight)
     {
         int count = 0;
+        int length = weight.length;
         
         for(int i = 0; i < length; i++)
         {
