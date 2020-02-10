@@ -3,7 +3,6 @@
 
 import java.io.File;
 import java.io.FileWriter;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -16,7 +15,6 @@ public class WeightCalculator
      double THRESHOLD = 0.2;
 
      private double[] TOTAL;
-
      /**
      * Takes in already filled trie and passes it through a traversal function
      * that is going to add the existing children to a stack.
