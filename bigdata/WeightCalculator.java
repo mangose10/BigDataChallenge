@@ -14,8 +14,7 @@ public class WeightCalculator
 
      double THRESHOLD = 0.0;
 
-     private double[] TOTAL = root.category;
-
+     private double[] TOTAL;
      /**
      * Takes in already filled trie and passes it through a traversal function
      * that is going to add the existing children to a stack.
@@ -24,6 +23,8 @@ public class WeightCalculator
      public WeightCalculator(TrieNode root)
      {
           traverse(root, "");
+
+          TOTAL = root.category;
      }
 
      /**
