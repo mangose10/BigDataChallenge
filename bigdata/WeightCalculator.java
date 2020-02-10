@@ -3,6 +3,7 @@
 
 import java.io.File;
 import java.io.FileWriter;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -12,7 +13,7 @@ public class WeightCalculator
 
      double AVERAGE = 0.0;
 
-     double THRESHOLD = 0.0;
+     double THRESHOLD = 0.2;
 
      private double[] TOTAL;
      /**
@@ -21,10 +22,9 @@ public class WeightCalculator
      * @param root
      */
      public WeightCalculator(TrieNode root)
-     {
-          traverse(root, "");
-
+     {  
           TOTAL = root.category;
+          traverse(root, "");
      }
 
      /**
@@ -45,7 +45,7 @@ public class WeightCalculator
 
                root.category = calculateWeight(root.category);
 
-               THRESHOLD = thresholdMaker(root.category);
+               thresholdMaker(root.category);
             
                boolean isValid = checkThreshold(root.category);
 
@@ -71,7 +71,7 @@ public class WeightCalculator
                     }
                else
                     {
-                    traverse(root.children[i], key + Character.toString('a' + i));
+                    traverse(root.children[i], key + Character.toString((char)('a' + i)));
                     }
                }
           }
@@ -91,12 +91,15 @@ public class WeightCalculator
      */
      private double[] calculateWeight(double[] weight)
      {
-          double total = 0.0;
 
           int length = weight.length;
-     
+
+          //System.out.println(Arrays.toString(weight));
+          //System.out.println(Arrays.toString(TOTAL));
+
           for(int i = 0; i < length; i++)
           {
+              //System.out.println(weight[i] + " : " + i);
                weight[i] = weight[i] / TOTAL[i];
           }
 
@@ -135,7 +138,16 @@ public class WeightCalculator
 
      private void thresholdMaker(double[] probability)
      {
-          double max = Collections.max(Array.asList(probability));;
+          double significance = 0.0;
+
+          Double[] buffer = new Double[probability.length];
+
+          for(int i = 0; i < buffer.length; i++)
+          {
+              buffer[i] = probability[i];
+          }
+
+          Double max = Collections.max(Arrays.asList(buffer));
 
           double average = 0.0;
 
@@ -144,7 +156,12 @@ public class WeightCalculator
                average += probability[i];
           }
 
-          THRESHOLD = max - average;
+          significance = max - average;
+
+          if(significance > THRESHOLD)
+          {
+               THRESHOLD = significance;
+          }
      }
 
     /**
