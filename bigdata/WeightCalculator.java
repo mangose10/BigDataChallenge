@@ -4,11 +4,17 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class WeightCalculator
 {
      String output = "";
-     public double[] THRESHOLD;
+
+     double AVERAGE = 0.0;
+
+     double THRESHOLD = 0.0;
+
+     private double[] TOTAL = root.category;
 
      /**
      * Takes in already filled trie and passes it through a traversal function
@@ -35,7 +41,10 @@ public class WeightCalculator
           if(root.isWord)
           {
                System.out.println(key);
+
                root.category = calculateWeight(root.category);
+
+               THRESHOLD = thresholdMaker(root.category);
             
                boolean isValid = checkThreshold(root.category);
 
@@ -84,15 +93,10 @@ public class WeightCalculator
           double total = 0.0;
 
           int length = weight.length;
-
-          for(int i = 0; i < length-1; i++)
-          {
-               total += weight[i];
-          }
      
           for(int i = 0; i < length; i++)
           {
-               weight[i] = weight[i] / total;
+               weight[i] = weight[i] / TOTAL[i];
           }
 
           return weight;
@@ -112,7 +116,7 @@ public class WeightCalculator
           
           for(int i = 0; i < length; i++)
           {
-               if(weight[i] <= THRESHOLD[i])
+               if(weight[i] <= THRESHOLD)
                {
                     count++;
                }
@@ -126,6 +130,20 @@ public class WeightCalculator
           {
                return false;
           }
+     }
+
+     private void thresholdMaker(double[] probability)
+     {
+          double max = Collections.max(Array.asList(probability));;
+
+          double average = 0.0;
+
+          for(int i = 0; i < probability.length; i++)
+          {
+               average += probability[i];
+          }
+
+          THRESHOLD = max - average;
      }
 
     /**
