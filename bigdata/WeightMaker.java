@@ -159,7 +159,7 @@ public class WeightMaker {
         ArrayList<WeightedTweet> tweets = new ArrayList<WeightedTweet>();
         try {
             tweets.addAll(readWeightedFile("../oldTweets.csv"));
-            tweets.addAll(readWeightedFile("../newTweets.csv"));
+            //tweets.addAll(readWeightedFile("../newTweets.csv"));
         } catch (FileNotFoundException event) {
             event.printStackTrace();
         } catch (IOException e) {

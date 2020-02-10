@@ -154,7 +154,7 @@ public class ClassifyTweet {
 
         String curLine  = fileReader.readLine();
         while ((curLine  = fileReader.readLine()) != null){
-            System.out.println(curLine);
+            
             if (!curLine.equals(",,") &&  !curLine.equals("")){
                 inputArray.add(curLine.replaceAll("’", "'")); //.replaceAll("“", "\"").replaceAll("", "\"")
             }
@@ -163,8 +163,9 @@ public class ClassifyTweet {
         //Could seperate by clauses here...
         
         for (String tweet: inputArray){
-            System.out.println(tweet);
+            
             tweetArray = new Tweet(tweet).getWords();
+            System.out.println(tweetArray);
             int[] results = classifyTweet(tweetArray);
             output += tweet + ", " + results[0] + ", " + results[1] + "\n";
             System.out.println(tweet);
