@@ -13,15 +13,15 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     longitude : {
-        type: "double",
+        type: "number",
     },
 
     latitude : {
-        type: "double",
+        type: "number",
     },
 
     category : {
-        type: "int",
+        type: "number",
     },
 
     tweet : {
