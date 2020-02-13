@@ -154,7 +154,7 @@ public class ClassifyTweet {
 
         String curLine  = fileReader.readLine();
         while ((curLine  = fileReader.readLine()) != null){
-            
+
             if (!curLine.equals(",,") &&  !curLine.equals("")){
                 inputArray.add(curLine.replaceAll("’", "'")); //.replaceAll("“", "\"").replaceAll("", "\"")
             }
@@ -205,6 +205,7 @@ public class ClassifyTweet {
 
         try {
             insertFromFile("../keyWeights.csv");
+            //classifyFile("../testWithOld.csv");
             classifyFile("../testWithNew.csv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
