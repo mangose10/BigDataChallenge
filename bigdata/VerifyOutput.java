@@ -103,7 +103,7 @@ public class VerifyOutput {
             out += inputArray.get(i) + "," + correct.get(i)[0] + ",";
             out += correct.get(i)[1] == -1 ? "" : correct.get(i)[1];
             out += "," + correct.get(i)[2];
-            System.out.println(i +" : " + output.get(i)[0] + "," + output.get(i)[1] + " vs " +correct.get(i)[0] +"/" + correct.get(i)[1] + "," + correct.get(i)[2]);
+            //System.out.println(i +" : " + output.get(i)[0] + "," + output.get(i)[1] + " vs " +correct.get(i)[0] +"/" + correct.get(i)[1] + "," + correct.get(i)[2]);
             if ((output.get(i)[0] == correct.get(i)[0]) || (output.get(i)[0] == correct.get(i)[1])) {
                 cCounter++;
                 out += ",1";
