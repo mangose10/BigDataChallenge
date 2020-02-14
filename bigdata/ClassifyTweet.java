@@ -206,7 +206,7 @@ public class ClassifyTweet {
         try {
             insertFromFile("../keyWeights.csv");
             //classifyFile("../testWithOld.csv");
-            classifyFile("../testWithNew.csv");
+            classifyFile("../input.csv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
