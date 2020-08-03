@@ -1,0 +1,314 @@
+{
+    "results": [
+      {
+        "created_at": "Wed Sep 13 23:59:59 +0000 2017",
+        "id": 908118091162415100,
+        "id_str": "908118091162415109",
+        "text": "RT @YoutubiaTv: #AfterIrma #IrmaRecovery #hurricaneirma #Irma #AfterIRMA #Hurricane #Jose 🚑 #ThursdayThoughts... https://t.co/tdyUUuy6j6",
+        "source": "<a href=\"http://twitter.com/#!/download/ipad\" rel=\"nofollow\">Twitter for iPad</a>",
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user": {
+          "id": 2413913117,
+          "id_str": "2413913117",
+          "name": "Jennifer Tromans",
+          "screen_name": "JenTromans",
+          "location": null,
+          "url": null,
+          "description": "I am a photographer. Not your typical Mom! I'm a Trekkie, a Scaper, a Browncoat, a Roswellian and a Democrat #TheResistance United We Stand Divided We Fall",
+          "translator_type": "none",
+          "protected": false,
+          "verified": false,
+          "followers_count": 4471,
+          "friends_count": 4964,
+          "listed_count": 184,
+          "favourites_count": 82444,
+          "statuses_count": 468421,
+          "created_at": "Sat Mar 15 23:40:10 +0000 2014",
+          "utc_offset": null,
+          "time_zone": null,
+          "geo_enabled": true,
+          "lang": null,
+          "contributors_enabled": false,
+          "is_translator": false,
+          "profile_background_color": "C0DEED",
+          "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+          "profile_background_tile": false,
+          "profile_link_color": "1DA1F2",
+          "profile_sidebar_border_color": "C0DEED",
+          "profile_sidebar_fill_color": "DDEEF6",
+          "profile_text_color": "333333",
+          "profile_use_background_image": true,
+          "profile_image_url": "http://pbs.twimg.com/profile_images/464047922443583489/mkQ3oijX_normal.jpeg",
+          "profile_image_url_https": "https://pbs.twimg.com/profile_images/464047922443583489/mkQ3oijX_normal.jpeg",
+          "profile_banner_url": "https://pbs.twimg.com/profile_banners/2413913117/1399471751",
+          "default_profile": true,
+          "default_profile_image": false,
+          "following": null,
+          "follow_request_sent": null,
+          "notifications": null
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "retweeted_status": {
+          "created_at": "Wed Sep 13 23:27:03 +0000 2017",
+          "id": 908109803343491100,
+          "id_str": "908109803343491072",
+          "text": "#AfterIrma #IrmaRecovery #hurricaneirma #Irma #AfterIRMA #Hurricane #Jose 🚑 #ThursdayThoughts... https://t.co/tdyUUuy6j6",
+          "source": "<a href=\"https://www.google.com/\" rel=\"nofollow\">Google</a>",
+          "truncated": false,
+          "in_reply_to_status_id": null,
+          "in_reply_to_status_id_str": null,
+          "in_reply_to_user_id": null,
+          "in_reply_to_user_id_str": null,
+          "in_reply_to_screen_name": null,
+          "user": {
+            "id": 901191842989051900,
+            "id_str": "901191842989051908",
+            "name": "Youtubia TV",
+            "screen_name": "YoutubiaTv",
+            "location": null,
+            "url": "https://www.youtube.com/channel/UCGEvKIXA-iT-cUTfJ4ImVtA",
+            "description": "WorldWide News\nFor Ads Send Message",
+            "translator_type": "none",
+            "protected": false,
+            "verified": false,
+            "followers_count": 51,
+            "friends_count": 648,
+            "listed_count": 0,
+            "favourites_count": 5,
+            "statuses_count": 728,
+            "created_at": "Fri Aug 25 21:17:33 +0000 2017",
+            "utc_offset": null,
+            "time_zone": null,
+            "geo_enabled": true,
+            "lang": null,
+            "contributors_enabled": false,
+            "is_translator": false,
+            "profile_background_color": "F5F8FA",
+            "profile_background_image_url": "",
+            "profile_background_image_url_https": "",
+            "profile_background_tile": false,
+            "profile_link_color": "1DA1F2",
+            "profile_sidebar_border_color": "C0DEED",
+            "profile_sidebar_fill_color": "DDEEF6",
+            "profile_text_color": "333333",
+            "profile_use_background_image": true,
+            "profile_image_url": "http://pbs.twimg.com/profile_images/911193277453492224/Ie4pefUW_normal.jpg",
+            "profile_image_url_https": "https://pbs.twimg.com/profile_images/911193277453492224/Ie4pefUW_normal.jpg",
+            "profile_banner_url": "https://pbs.twimg.com/profile_banners/901191842989051908/1503696137",
+            "default_profile": true,
+            "default_profile_image": false,
+            "following": null,
+            "follow_request_sent": null,
+            "notifications": null
+          },
+          "geo": null,
+          "coordinates": null,
+          "place": null,
+          "contributors": null,
+          "is_quote_status": false,
+          "quote_count": 0,
+          "reply_count": 0,
+          "retweet_count": 1,
+          "favorite_count": 0,
+          "entities": {
+            "hashtags": [
+              {
+                "text": "AfterIrma",
+                "indices": [
+                  0,
+                  10
+                ]
+              },
+              {
+                "text": "IrmaRecovery",
+                "indices": [
+                  11,
+                  24
+                ]
+              },
+              {
+                "text": "hurricaneirma",
+                "indices": [
+                  25,
+                  39
+                ]
+              },
+              {
+                "text": "Irma",
+                "indices": [
+                  40,
+                  45
+                ]
+              },
+              {
+                "text": "AfterIRMA",
+                "indices": [
+                  46,
+                  56
+                ]
+              },
+              {
+                "text": "Hurricane",
+                "indices": [
+                  57,
+                  67
+                ]
+              },
+              {
+                "text": "Jose",
+                "indices": [
+                  68,
+                  73
+                ]
+              },
+              {
+                "text": "ThursdayThoughts",
+                "indices": [
+                  76,
+                  93
+                ]
+              }
+            ],
+            "urls": [
+              {
+                "url": "https://t.co/tdyUUuy6j6",
+                "expanded_url": "http://youtu.be/UkVN3XfxXEs?a",
+                "display_url": "youtu.be/UkVN3XfxXEs?a",
+                "unwound": {
+                  "url": null,
+                  "status": null,
+                  "title": null,
+                  "description": null
+                },
+                "indices": [
+                  97,
+                  120
+                ]
+              }
+            ],
+            "user_mentions": [],
+            "symbols": []
+          },
+          "favorited": false,
+          "retweeted": false,
+          "possibly_sensitive": false,
+          "filter_level": "low",
+          "lang": "und"
+        },
+        "is_quote_status": false,
+        "quote_count": 0,
+        "reply_count": 0,
+        "retweet_count": 0,
+        "favorite_count": 0,
+        "entities": {
+          "hashtags": [
+            {
+              "text": "AfterIrma",
+              "indices": [
+                16,
+                26
+              ]
+            },
+            {
+              "text": "IrmaRecovery",
+              "indices": [
+                27,
+                40
+              ]
+            },
+            {
+              "text": "hurricaneirma",
+              "indices": [
+                41,
+                55
+              ]
+            },
+            {
+              "text": "Irma",
+              "indices": [
+                56,
+                61
+              ]
+            },
+            {
+              "text": "AfterIRMA",
+              "indices": [
+                62,
+                72
+              ]
+            },
+            {
+              "text": "Hurricane",
+              "indices": [
+                73,
+                83
+              ]
+            },
+            {
+              "text": "Jose",
+              "indices": [
+                84,
+                89
+              ]
+            },
+            {
+              "text": "ThursdayThoughts",
+              "indices": [
+                92,
+                109
+              ]
+            }
+          ],
+          "urls": [
+            {
+              "url": "https://t.co/tdyUUuy6j6",
+              "expanded_url": "http://youtu.be/UkVN3XfxXEs?a",
+              "display_url": "youtu.be/UkVN3XfxXEs?a",
+              "unwound": {
+                "url": null,
+                "status": null,
+                "title": null,
+                "description": null
+              },
+              "indices": [
+                113,
+                136
+              ]
+            }
+          ],
+          "user_mentions": [
+            {
+              "screen_name": "YoutubiaTv",
+              "name": "Youtubia TV",
+              "id": 901191842989051900,
+              "id_str": "901191842989051908",
+              "indices": [
+                3,
+                14
+              ]
+            }
+          ],
+          "symbols": []
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "filter_level": "low",
+        "lang": "und",
+        "matching_rules": [
+          {
+            "tag": null
+          }
+        ]
+      }
+    ]
+}
